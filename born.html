@@ -4,12 +4,21 @@
   <meta charset="UTF-8">
   <title>Nascita Uovo</title>
   <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+    }
     body {
-      background-color: #f0f0f0;
+      background: url('sfondo-giungle-desktop.png') no-repeat center center;
+      background-attachment: scroll;
+      background-size: cover;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
+      min-width: 100vw;
     }
 
     .sprite-container {
@@ -17,7 +26,8 @@
       height: 512px;
       background-image: url('uovo_sprite.png');
       background-repeat: no-repeat;
-      animation: hatch 2s steps(4) forwards;
+      /*animation: hatch 10s steps(4) forwards;*/
+      animation: hatch 5s steps(4) infinite;
     }
 
     @keyframes hatch {
@@ -26,6 +36,21 @@
       }
       to {
         background-position: 0 -2048px; /* 512 * 4 */
+      }
+    }
+
+    @media only screen and (max-width: 768px) {
+      body {
+        background: #f0f0f0 url('sfondo-giungle-mobile.png') no-repeat center center;
+        background-attachment: scroll;
+        background-size: cover;
+      }
+      .sprite-container {
+        width: 90vw;
+        height: 90vw;
+        max-width: 90vw;
+        max-height: 90vw;
+        /* Mantieni proporzioni quadrate */
       }
     }
   </style>
