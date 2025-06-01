@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Nascita Uovo</title>
+  <style>
+    body {
+      background-color: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .sprite-container {
+      width: 512px;
+      height: 512px;
+      background-image: url('uovo_sprite.png');
+      background-repeat: no-repeat;
+      animation: hatch 2s steps(4) forwards;
+    }
+
+    @keyframes hatch {
+      from {
+        background-position: 0 0;
+      }
+      to {
+        background-position: 0 -2048px; /* 512 * 4 */
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="sprite-container"></div>
+</body>
+</html>
