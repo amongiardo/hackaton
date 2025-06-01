@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Timeline Animali</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+    html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        width: 100%;
+    }
+    body {
+        background: url('sfondo-desktop.png') no-repeat center center;
+        background-attachment: scroll;
+        background-size: cover;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        min-width: 100vw;
+    }
+    /* Contenitore centrale con dimensione massima */
+    #contenitore-pagina {
+        width: 100vw;
+        height: 100vh;
+        max-width: 1024px;
+        max-height: 768px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: stretch;
+        background: rgba(255,255,255,0.01); /* trasparente, solo per layout */
+        box-sizing: border-box;
+    }
+    #contenitore-animale {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 0;
+        min-width: 0;
+    }
+    #contenitore-animale img {
+        max-width: 90%;
+        max-height: 90%;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+        display: block;
+        margin: auto;
+    }
+    #contenitore-timeline {
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.8);
+    }
+    #etichetta-anno {
+        text-align: center;
+        margin-bottom: 10px;
+        font-size: 18px;
+    }
+    #timeline {
+        width: 100%;
+    }
+    @media only screen and (max-width: 768px) {
+        body {
+            background: #f0f0f0 url('sfondo-mobile.png') no-repeat center center;
+            background-attachment: scroll;
+            background-size: cover;
+        }
+    }
+</style>
+
+    <!-- Inclusione di jQuery via CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div id="contenitore-pagina">
+        <!-- Qui verrà mostrato l’animale al centro -->
+        <div id="contenitore-animale">
+            <img id="immagine-animale" src="" alt="Animale">
+        </div>
+
+        <!-- Barra della timeline con etichetta dell’anno -->
+        <div id="contenitore-timeline">
+            <div id="etichetta-anno">Anno: 0</div>
+            <input type="range" id="timeline" min="0" max="0" value="0">
+        </div>
+    </div>
+
+
+<script>
+    $(document).ready(function() {
+        // Array di percorsi delle immagini degli animali, in ordine come in index.html, ESCLUDENDO le uova
+        var animali = [
+            'riccio-svg.svg',         // Ikki
+            'tartaruga-svg.svg',      // Oo
+            'topo-saltatore-svg.svg', // Chikai
+            'picchio-svg.svg',        // Ferao
+            'pipistrello-svg.svg',    // Mang
+            'corvo-svg.svg',          // Ko
+            'avvoltoio-svg.svg',      // Chil
+            'cobra-svg.svg',          // Kaa
+            'sciacallo-svg.svg',      // Tabaqui
+            'bufalo-svg.svg',         // Mysa
+            'toro-svg.svg',           // Rama
+            'pantera-svg.svg',        // Bagheera
+            'tigre-svg.svg',          // Shere Khan
+            'elefante-svg.svg',       // Hathi
+            'lupo-svg.svg',           // Akela
+            'orso-svg.svg',           // Baloo
+            'coccodrillo-chroco-svg.svg' // Jakala
+        ];
+
+        // Numero massimo della timeline = (numero di animali disponibili) - 1
+        var N = animali.length - 1;
+        $('#timeline').attr('max', N);
+
+        // Funzione che aggiorna l’immagine e l’etichetta dell’anno in base all’indice selezionato
+        function aggiornaAnimale(indice) {
+            var percorsoImmagine = animali[indice];
+            $('#immagine-animale').attr('src', percorsoImmagine);
+            $('#etichetta-anno').text('Anno: ' + indice);
+        }
+
+        // Se ci sono animali, inizializza con indice 0
+        if (animali.length > 0) {
+            aggiornaAnimale(0);
+        }
+
+        // Al variare del range slider, aggiorna l’animale
+        $('#timeline').on('input change', function() {
+            var indice = $(this).val();
+            aggiornaAnimale(indice);
+        });
+    });
+</script>
+</body>
+</html>
