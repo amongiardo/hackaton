@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Timeline Animali</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <style>
     html, body {
         margin: 0;
@@ -82,12 +83,15 @@
         <div id="contenitore-animale">
             <img id="immagine-animale" src="" alt="Animale">
         </div>
+            <div id="nome-animale" style="text-align:center;font-weight:bold;margin-top:10px;"></div>
 
         <!-- Barra della timeline con etichetta dell’anno -->
         <div id="contenitore-timeline">
             <div id="etichetta-anno">Anno: 0</div>
             <input type="range" id="timeline" min="0" max="0" value="0">
         </div>
+        <button id="play-auto" class="btn btn-success">Auto Play</button>
+        <button id="stop-auto" class="btn btn-danger">Stop Auto Play</button>
     </div>
 
 
@@ -95,6 +99,9 @@
     $(document).ready(function() {
         // Array di percorsi delle immagini degli animali, in ordine come in index.html, ESCLUDENDO le uova
         var animali = [
+            'nido-uovo-svg.svg',         // Uovo 1
+            'uovo-crepe-svg.svg',         // Uovo 2
+            'uovo-semi-aperto-svg.svg',         // Uovo 3
             'riccio-svg.svg',         // Ikki
             'tartaruga-svg.svg',      // Oo
             'topo-saltatore-svg.svg', // Chikai
@@ -118,11 +125,19 @@
         var N = animali.length - 1;
         $('#timeline').attr('max', N);
 
+        var nomi = [
+            'Nido', 'Uovo', 'Nascita',
+            'Ikki', 'Oo', 'Chikai', 'Ferao', 'Mang', 'Ko', 'Chil',
+            'Kaa', 'Tabaqui', 'Mysa', 'Rama', 'Bagheera',
+            'Shere Khan', 'Hathi', 'Akela', 'Baloo', 'Jakala'
+        ];
+
         // Funzione che aggiorna l’immagine e l’etichetta dell’anno in base all’indice selezionato
         function aggiornaAnimale(indice) {
             var percorsoImmagine = animali[indice];
             $('#immagine-animale').attr('src', percorsoImmagine);
             $('#etichetta-anno').text('Anno: ' + indice);
+            $('#nome-animale').text(nomi[indice]);
         }
 
         // Se ci sono animali, inizializza con indice 0
@@ -135,7 +150,35 @@
             var indice = $(this).val();
             aggiornaAnimale(indice);
         });
+
+
+            let autoPlay = false;
+        let intervallo;
+        $('#play-auto').on('click', function() {
+            if (!autoPlay) {
+                autoPlay = true;
+                let i = parseInt($('#timeline').val());
+                intervallo = setInterval(() => {
+                    if (i <= N) {
+                        $('#timeline').val(i).trigger('input');
+                        i++;
+                    } else {
+                        clearInterval(intervallo);
+                        autoPlay = false;
+                    }
+                }, 1500);
+            } else {
+                clearInterval(intervallo);
+                autoPlay = false;
+            }
+        });
+        $('#stop-auto').on('click', function() {
+            clearInterval(intervallo);
+            autoPlay = false;
+        });
+
     });
 </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
