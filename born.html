@@ -24,10 +24,10 @@
     .sprite-container {
       width: 512px;
       height: 512px;
-      background-image: url('uovo_sprite.png');
+      background-image: url('sprite_nido.png');
       background-repeat: no-repeat;
       /*animation: hatch 10s steps(4) forwards;*/
-      animation: hatch 5s steps(4) infinite;
+      animation: hatch 1s steps(4) infinite;
     }
 
     @keyframes hatch {
@@ -35,7 +35,7 @@
         background-position: 0 0;
       }
       to {
-        background-position: 0 -2048px; /* 512 * 4 */
+        background-position: 0 -4096px; /* 512 * 8 */
       }
     }
 
