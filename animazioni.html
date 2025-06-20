@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Esempio Animazione</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+    }
+    body {
+      background: url('sfondi/office-desktop.png') no-repeat center center;
+      background-attachment: scroll;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      min-width: 100vw;
+    }
+
+    .sprite-container {
+      width: 512px;
+      height: 512px;
+      background-image: url('sprite/sprite_riccio_felice_move.png');
+      background-repeat: no-repeat;
+      /*animation: hatch 10s steps(4) forwards;*/
+      animation: hatch 1s steps(4) infinite;
+    }
+
+    @keyframes hatch {
+      from {
+        background-position: 0 0;
+      }
+      to {
+        background-position: 0 -4096px; /* 512 * 8 */
+      }
+    }
+
+    @media only screen and (max-width: 768px) {
+      body {
+        background: #f0f0f0 url('sfondi/office-mobile.png') no-repeat center center;
+        background-attachment: scroll;
+        background-size: cover;
+      }
+      .sprite-container {
+        width: 90vw;
+        height: 90vw;
+        max-width: 90vw;
+        max-height: 90vw;
+        /* Mantieni proporzioni quadrate */
+      }
+    }
+    .controls {
+      margin-top: 20px;
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="sprite-container"></div>
+  <div class="controls">
+    <button id="btn-felice">Felice</button>
+    <button id="btn-triste">Triste</button>
+    <button id="btn-affamato">Solo Movimento</button>
+  </div>
+  <script>
+    const sprite = document.querySelector('.sprite-container');
+    document.getElementById('btn-felice').addEventListener('click', () => {
+      sprite.style.backgroundImage = "url('sprite/sprite_riccio_felice_move.png')";
+    });
+    document.getElementById('btn-triste').addEventListener('click', () => {
+      sprite.style.backgroundImage = "url('sprite/sprite_riccio_triste_move.png')";
+    });
+    document.getElementById('btn-affamato').addEventListener('click', () => {
+      sprite.style.backgroundImage = "url('sprite/sprite_riccio_affamato_move.png')";
+    });
+  </script>
+</body>
+</html>

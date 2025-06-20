@@ -97,29 +97,28 @@
 
 <script>
     $(document).ready(function() {
-        // Array di percorsi delle immagini degli animali, in ordine come in index.html, ESCLUDENDO le uova
-        var animali = [
-            'nido-uovo-svg.svg',         // Uovo 1
-            'uovo-crepe-svg.svg',         // Uovo 2
-            'uovo-semi-aperto-svg.svg',         // Uovo 3
-            'riccio-svg.svg',         // Ikki
-            'tartaruga-svg.svg',      // Oo
-            'topo-saltatore-svg.svg', // Chikai
-            'picchio-svg.svg',        // Ferao
-            'pipistrello-svg.svg',    // Mang
-            'corvo-svg.svg',          // Ko
-            'avvoltoio-svg.svg',      // Chil
-            'cobra-svg.svg',          // Kaa
-            'sciacallo-svg.svg',      // Tabaqui
-            'bufalo-svg.svg',         // Mysa
-            'toro-svg.svg',           // Rama
-            'pantera-svg.svg',        // Bagheera
-            'tigre-svg.svg',          // Shere Khan
-            'elefante-svg.svg',       // Hathi
-            'lupo-svg.svg',           // Akela
-            'orso-svg.svg',           // Baloo
-            'coccodrillo-chroco-svg.svg' // Jakala
+        // Percorsi delle immagini SVG nella cartella "animali_svg"
+        const basePath = 'animali_svg/';
+        const fileNames = [
+            'riccio-svg.svg',
+            'tartaruga-svg.svg',
+            'topo-saltatore-svg.svg',
+            'picchio-svg.svg',
+            'pipistrello-svg.svg',
+            'corvo-svg.svg',
+            'avvoltoio-svg.svg',
+            'cobra-svg.svg',
+            'sciacallo-svg.svg',
+            'bufalo-svg.svg',
+            'toro-svg.svg',
+            'pantera-svg.svg',
+            'tigre-svg.svg',
+            'elefante-svg.svg',
+            'lupo-svg.svg',
+            'orso-svg.svg',
+            'coccodrillo-chroco-svg.svg'
         ];
+        var animali = fileNames.map(name => basePath + name);
 
         // Numero massimo della timeline = (numero di animali disponibili) - 1
         var N = animali.length - 1;

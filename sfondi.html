@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anteprima Sfondi</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+    }
+
+    h1 {
+      text-align: center;
+      padding: 20px 0;
+    }
+
+    .buttons-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .buttons-container button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .preview {
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .preview img {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #ccc;
+      background: white;
+    }
+  </style>
+</head>
+<body>
+  <h1>Sfondi disponibili</h1>
+
+  <div class="buttons-container">
+    <button onclick="changeBackground('sfondi/breakroom-desktop.png')">Breakroom Desktop</button>
+    <button onclick="changeBackground('sfondi/breakroom-mobile.png')">Breakroom Mobile</button>
+    <button onclick="changeBackground('sfondi/jungle-desktop.png')">Jungle Desktop</button>
+    <button onclick="changeBackground('sfondi/jungle-mobile.png')">Jungle Mobile</button>
+    <button onclick="changeBackground('sfondi/office-desktop.png')">Office Desktop</button>
+    <button onclick="changeBackground('sfondi/office-mobile.png')">Office Mobile</button>
+  </div>
+
+  <div class="preview">
+    <img id="background-preview" src="sfondi/breakroom-desktop.png" alt="Anteprima sfondo">
+  </div>
+
+  <script>
+    function changeBackground(path) {
+      document.getElementById('background-preview').src = path;
+    }
+  </script>
+</body>
+</html>

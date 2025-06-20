@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lottie Animation Viewer</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+  <style>
+    body { display: flex; justify-content: center; align-items: center; height: 100vh; background: #f0f0f0; }
+    #animation { width: 500px; height: 500px; }
+  </style>
+</head>
+<body>
+  <div id="animation"></div>
+
+  <script>
+    // Carica il JSON localmente (se in file) oppure incollalo qui come oggetto
+    fetch('bulb_animation.json') // Assicurati che sia nella stessa cartella
+      .then(response => response.json())
+      .then(data => {
+        lottie.loadAnimation({
+          container: document.getElementById('animation'),
+          renderer: 'svg',
+          loop: true,
+          autoplay: true,
+          animationData: data
+        });
+      });
+  </script>
+</body>
+</html>
