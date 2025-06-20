@@ -27,7 +27,7 @@
       background-image: url('sprite/sprite_riccio_felice_move.png');
       background-repeat: no-repeat;
       /*animation: hatch 10s steps(4) forwards;*/
-      animation: hatch 1s steps(4) infinite;
+      animation: hatch 5s steps(8) infinite;
     }
 
     @keyframes hatch {
@@ -66,7 +66,10 @@
   <div class="controls">
     <button id="btn-felice">Felice</button>
     <button id="btn-triste">Triste</button>
-    <button id="btn-affamato">Solo Movimento</button>
+    <button id="btn-move">Solo Movimento</button>
+    <button id="btn-flip">Flip</button>
+    <button id="btn-move2">Solo Movimento 2</button>
+
   </div>
   <script>
     const sprite = document.querySelector('.sprite-container');
@@ -76,9 +79,16 @@
     document.getElementById('btn-triste').addEventListener('click', () => {
       sprite.style.backgroundImage = "url('sprite/sprite_riccio_triste_move.png')";
     });
-    document.getElementById('btn-affamato').addEventListener('click', () => {
-      sprite.style.backgroundImage = "url('sprite/sprite_riccio_affamato_move.png')";
+    document.getElementById('btn-move').addEventListener('click', () => {
+      sprite.style.backgroundImage = "url('sprite/sprite_riccio_move.png')";
     });
+    document.getElementById('btn-flip').addEventListener('click', () => {
+      sprite.style.backgroundImage = "url('sprite/sprite_riccio_move_flip.png')";
+    });
+        document.getElementById('btn-move2').addEventListener('click', () => {
+      sprite.style.backgroundImage = "url('sprite/sprite_riccio_move2_flip.png')";
+    });
+
   </script>
 </body>
 </html>
